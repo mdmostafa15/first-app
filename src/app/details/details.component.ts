@@ -25,7 +25,9 @@ export class DetailsComponent {
 
   constructor () {
     const housingId: number = Number(this.route.snapshot.params['id']);
-    this.housingLocation = this.housingServie.getHousingLocation(housingId);       
+    this.housingServie.getHousingLocation(housingId).then((housingLocation)=>{
+      this.housingLocation = housingLocation;
+    });       
   }
 
   // submiting form 
@@ -35,5 +37,6 @@ export class DetailsComponent {
       this.applyForm.value.lastName ?? '',
       this.applyForm.value.email ?? ''
     )
+    
   }
 }
